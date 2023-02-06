@@ -1,10 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+
 * {
   margin: 0;
   font-family: "Quicksand";
-  color: yellow;
+  color: red;
 }
 body {
-  background-color: dodgerblue;
+  background-color: skyblue;
 }
 .navbar {
   position: sticky;

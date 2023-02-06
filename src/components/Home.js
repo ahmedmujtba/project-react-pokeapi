@@ -4,22 +4,19 @@ import PokemonList from "./PokemonList";
 
 function Home() {
   const [pokemons, setPokemons] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getPokemons().then((data) => {
       setPokemons(data);
+      setIsLoading(false);
     });
-  }, []);
+  }, [pokemons]);
 
   return (
-    <div>
-      <h2>Home</h2>
-      <ul>
-        {pokemons &&
-          pokemons.map((pokemon) => {
-            return <PokemonList key={pokemon.name} pokemon={pokemon} />;
-          })}
-      </ul>
+    <div className="home">
+      {isLoading && <div>Loading...</div>}
+      <PokemonList key={pokemons.name} pokemons={pokemons}></PokemonList>
     </div>
   );
 }

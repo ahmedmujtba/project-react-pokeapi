@@ -1,10 +1,12 @@
 import React from "react";
 
-function PokemonList(props) {
-  const pokemon = props.pokemon;
+function PokemonList({ pokemons }) {
   return (
     <div>
-      <p>{pokemon.name}</p>
+      {pokemons &&
+        pokemons.map((pokemon) => {
+          return <p>{pokemon.name}</p>;
+        })}
     </div>
   );
 }
