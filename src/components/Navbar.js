@@ -6,6 +6,7 @@ function Navbar() {
     <div>
       <nav className="nav-bar">
         <img src={logo} alt="pokeball-logo" width="200" height="200"></img>
+        <input type="text" />
       </nav>
     </div>
   );

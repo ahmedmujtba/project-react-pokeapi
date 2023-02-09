@@ -4,6 +4,8 @@
   margin: 0;
   font-family: "Quicksand";
   color: red;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 body {
   background-color: skyblue;
@@ -13,7 +15,11 @@ body {
   padding: 20px;
   display: flex;
   align-items: center;
-  max-width: 800px;
+  max-width: 400px;
   margin: 0 auto;
   border-bottom: 2px solid white;
+  background-color: #c04c4b;
+}
+.pages {
+  padding: 20px;
 }
