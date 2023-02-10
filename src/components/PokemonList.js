@@ -1,16 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-function PokemonList({ pokemons, singlePokemon }) {
-  console.log(pokemons);
-  console.log(singlePokemon);
-  const [singlePokemonInfo, setSinglePokemonInfo] = useState();
-
-  useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${singlePokemon}`).then((res) => {
-      console.log(res);
-    });
-  });
-
+function PokemonList({ pokemons }) {
   return (
     <div>
       {pokemons &&

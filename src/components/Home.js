@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 
 function Home() {
   const [pokemons, setPokemons] = useState([]);
-  const [singlePokemon, setSinglePokemon] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [curPageUrl, setCurPageUrl] = useState(
     "https://pokeapi.co/api/v2/pokemon"
@@ -23,7 +22,6 @@ function Home() {
       })
       .then((data) => {
         setPokemons(data.results);
-        setSinglePokemon(data.results.map((p) => p.name));
         setNextPage(data.next);
         setPrevPage(data.previous);
         setIsLoading(false);
@@ -35,20 +33,16 @@ function Home() {
   };
 
   const prevPageHandler = () => {
-    setPrevPage(prevPage);
+    setCurPageUrl(prevPage);
   };
 
   return (
     <div className="home">
       {isLoading && <div>loading...</div>}
-      <PokemonList
-        key={pokemons.name}
-        pokemons={pokemons}
-        singlePokemon={singlePokemon}
-      ></PokemonList>
+      <PokemonList key={pokemons.name} pokemons={pokemons}></PokemonList>
       <Pagination
-        nextPageHandler={nextPageHandler}
-        prevPageHandler={prevPageHandler}
+        nextPageHandler={nextPage ? nextPageHandler : null}
+        prevPageHandler={prevPage ? prevPageHandler : null}
       ></Pagination>
     </div>
   );
