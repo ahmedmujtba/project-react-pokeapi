@@ -27,19 +27,30 @@ function Home() {
         setIsLoading(false);
       });
   }, [curPageUrl]);
-
+  //function to reset current page url to next page
   const nextPageHandler = () => {
     setCurPageUrl(nextPage);
   };
-
+  //function to reset current page url to previous page
   const prevPageHandler = () => {
     setCurPageUrl(prevPage);
   };
-
+  //updates URL to individual pokemon so user can access individual pokemon properties
+  const pokemonInfoHandler = (pokemons) => {
+    console.log(pokemons);
+    console.log(pokemons.target.innerHTML);
+    setCurPageUrl(
+      `https://pokeapi.co/api/v2/pokemon/${pokemons.target.innerHTML}`
+    );
+  };
   return (
     <div className="home">
       {isLoading && <div>loading...</div>}
-      <PokemonList key={pokemons.name} pokemons={pokemons}></PokemonList>
+      <PokemonList
+        key={pokemons.name}
+        pokemons={pokemons}
+        pokemonInfoHandler={pokemonInfoHandler}
+      ></PokemonList>
       <Pagination
         nextPageHandler={nextPage ? nextPageHandler : null}
         prevPageHandler={prevPage ? prevPageHandler : null}

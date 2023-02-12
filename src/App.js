@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/pokemon" element={<PokemonList />} />
-        <Route path="/pokemon/charmander" element={<PokemonInfo />} />
+        <Route path="/pokemon/:pokemon" element={<PokemonList />} />
       </Routes>
       <ul></ul>
     </div>
