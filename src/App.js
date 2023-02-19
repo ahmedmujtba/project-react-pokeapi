@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import PokemonList from "./components/PokemonList";
-import PokemonInfo from "./components/PokemonInfo";
 
 function App() {
   return (

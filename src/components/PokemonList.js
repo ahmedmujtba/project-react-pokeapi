@@ -1,9 +1,9 @@
 import React from "react";
 
-function PokemonList({ pokemons, pokemonInfoHandler }) {
-  // const pokemonInfoHandler = (pokemons) => {
-  //   console.log(pokemons.target.innerHTML);
-  // };
+function PokemonList({ pokemons, setCurPageUrl }) {
+  const onClickHandler = () => {
+    console.log(pokemons);
+  };
 
   return (
     <div>
@@ -12,8 +12,9 @@ function PokemonList({ pokemons, pokemonInfoHandler }) {
           return (
             <p
               onClick={() => {
-                pokemonInfoHandler();
+                onClickHandler();
               }}
+              key={pokemon.name}
             >
               {pokemon.name}
             </p>

@@ -36,20 +36,19 @@ function Home() {
     setCurPageUrl(prevPage);
   };
   //updates URL to individual pokemon so user can access individual pokemon properties
-  const pokemonInfoHandler = (pokemons) => {
-    console.log(pokemons);
-    console.log(pokemons.target.innerHTML);
-    setCurPageUrl(
-      `https://pokeapi.co/api/v2/pokemon/${pokemons.target.innerHTML}`
-    );
-  };
+  //   const pokemonInfoHandler = (data) => {
+
+  //     setCurPageUrl(
+  //       `https://pokeapi.co/api/v2/pokemon/${pokemons.target.innerHTML}`
+  //     );
+  //   };
   return (
     <div className="home">
       {isLoading && <div>loading...</div>}
       <PokemonList
         key={pokemons.name}
         pokemons={pokemons}
-        pokemonInfoHandler={pokemonInfoHandler}
+        setCurPageUrl={setCurPageUrl}
       ></PokemonList>
       <Pagination
         nextPageHandler={nextPage ? nextPageHandler : null}
