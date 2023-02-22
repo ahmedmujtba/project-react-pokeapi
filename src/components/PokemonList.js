@@ -4,7 +4,7 @@ import PokemonInfo from "./PokemonInfo";
 
 function PokemonList({ pokemons }) {
   return (
-    <div>
+    <div className="pokemon-list">
       {pokemons &&
         pokemons.map((pokemon) => {
           return (
