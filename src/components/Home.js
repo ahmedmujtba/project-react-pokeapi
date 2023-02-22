@@ -4,6 +4,7 @@ import PokemonList from "./PokemonList";
 import { useEffect, useState } from "react";
 
 function Home() {
+  const [allData, setData] = useState();
   const [pokemons, setPokemons] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [curPageUrl, setCurPageUrl] = useState(
@@ -21,12 +22,13 @@ function Home() {
         return res.json();
       })
       .then((data) => {
+        setData(data);
         setPokemons(data.results);
         setNextPage(data.next);
         setPrevPage(data.previous);
         setIsLoading(false);
       });
-  }, [curPageUrl]);
+  }, [curPageUrl, allData]);
   //function to reset current page url to next page
   const nextPageHandler = () => {
     setCurPageUrl(nextPage);
@@ -35,21 +37,11 @@ function Home() {
   const prevPageHandler = () => {
     setCurPageUrl(prevPage);
   };
-  //updates URL to individual pokemon so user can access individual pokemon properties
-  //   const pokemonInfoHandler = (data) => {
 
-  //     setCurPageUrl(
-  //       `https://pokeapi.co/api/v2/pokemon/${pokemons.target.innerHTML}`
-  //     );
-  //   };
   return (
     <div className="home">
       {isLoading && <div>loading...</div>}
-      <PokemonList
-        key={pokemons.name}
-        pokemons={pokemons}
-        setCurPageUrl={setCurPageUrl}
-      ></PokemonList>
+      <PokemonList key={pokemons.name} pokemons={pokemons}></PokemonList>
       <Pagination
         nextPageHandler={nextPage ? nextPageHandler : null}
         prevPageHandler={prevPage ? prevPageHandler : null}

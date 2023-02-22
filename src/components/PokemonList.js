@@ -1,23 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import PokemonInfo from "./PokemonInfo";
 
-function PokemonList({ pokemons, setCurPageUrl }) {
-  const onClickHandler = () => {
-    console.log(pokemons);
-  };
-
+function PokemonList({ pokemons }) {
   return (
     <div>
       {pokemons &&
         pokemons.map((pokemon) => {
           return (
-            <p
-              onClick={() => {
-                onClickHandler();
-              }}
-              key={pokemon.name}
-            >
-              {pokemon.name}
-            </p>
+            <li key={pokemon.name}>
+              <Link to={`/${pokemon.name}`}>{pokemon.name}</Link>
+            </li>
           );
         })}
     </div>
