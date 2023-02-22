@@ -23,3 +23,8 @@ body {
 .pages {
   padding: 20px;
 }
+.single-pokemon img {
+  align-items: center;
+  height: 200px;
+  width: 200px;
+}
