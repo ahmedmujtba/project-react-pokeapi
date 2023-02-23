@@ -42,7 +42,7 @@ function PokemonInfo() {
     <div className="single-pokemon">
       {isLoading && <div>loading...</div>}
       <img src={pokemonImg} alt="pokemon-img" />
-      <h2>name should appear here</h2>
+      <h2></h2>
       <br />
       <p>{typeOne}</p>
       <br />
