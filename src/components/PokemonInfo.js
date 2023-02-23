@@ -3,13 +3,14 @@ import { useParams } from "react-router-dom";
 
 function PokemonInfo() {
   const [isLoading, setIsLoading] = useState(true);
-  const [singlePokemonData, setSinglePokemonData] = useState();
+  const [pokemonData, setPokemonData] = useState();
   const [pokemonImg, setPokemonImg] = useState();
   const [pokemonHp, setPokemonHp] = useState();
   const [pokemonAttack, setPokemonAttack] = useState();
   const [pokemonDefense, setPokemonDefense] = useState();
   const [pokemonSpeed, setPokemonSpeed] = useState();
   const [pokemonWeight, setPokemonWeight] = useState();
+  const [pokemonHeight, setPokemonHeight] = useState();
   const [typeOne, setTypeOne] = useState();
   const [typeTwo, setTypeTwo] = useState();
 
@@ -23,28 +24,35 @@ function PokemonInfo() {
         return res.json();
       })
       .then((data) => {
-        console.log(data.name);
+        setPokemonData(data);
         setTypeOne(data.types[0].type.name);
-        setSinglePokemonData(data);
         setPokemonImg(data.sprites.other["official-artwork"]["front_default"]);
         setPokemonHp(data.stats[0].base_stat);
         setPokemonAttack(data.stats[1].base_stat);
         setPokemonDefense(data.stats[2].base_stat);
         setPokemonSpeed(data.stats[3].base_stat);
         setPokemonWeight(data.weight);
+        setPokemonHeight(data.height);
         setIsLoading(false);
       });
   }, [pokemon]);
+  console.log(pokemonData.id);
+  console.log(pokemonData.stats[3].base_stat);
   return (
     <div className="single-pokemon">
       {isLoading && <div>loading...</div>}
       <img src={pokemonImg} alt="pokemon-img" />
-      <h2></h2>
+      <h2>name should appear here</h2>
+      <br />
+      <p>{typeOne}</p>
+      <br />
       <p>HP: {pokemonHp}</p>
       <p>Attack: {pokemonAttack}</p>
       <p>Defense: {pokemonDefense}</p>
       <p>Speed: {pokemonSpeed}</p>
+      <br />
       <p>Weight: {pokemonWeight}</p>
+      <p>Height: {pokemonHeight}</p>
     </div>
   );
 }
