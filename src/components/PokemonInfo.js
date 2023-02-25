@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 function PokemonInfo() {
   const [isLoading, setIsLoading] = useState(true);
   const [pokemonData, setPokemonData] = useState();
+  const [pokemonName, setPokemonName] = useState();
   const [pokemonImg, setPokemonImg] = useState();
   const [pokemonHp, setPokemonHp] = useState();
   const [pokemonAttack, setPokemonAttack] = useState();
@@ -25,6 +26,7 @@ function PokemonInfo() {
       })
       .then((data) => {
         setPokemonData(data);
+        setPokemonName(data.name);
         setTypeOne(data.types[0].type.name);
         setPokemonImg(data.sprites.other["official-artwork"]["front_default"]);
         setPokemonHp(data.stats[0].base_stat);
@@ -36,23 +38,30 @@ function PokemonInfo() {
         setIsLoading(false);
       });
   }, [pokemon]);
-  console.log(pokemonData.id);
-  console.log(pokemonData.stats[3].base_stat);
+  pokemonData && console.log(pokemonData);
+
   return (
-    <div className="single-pokemon">
+    <div className="card" style={{ width: "10rem" }}>
       {isLoading && <div>loading...</div>}
-      <img src={pokemonImg} alt="pokemon-img" />
-      <h2></h2>
-      <br />
-      <p>{typeOne}</p>
-      <br />
-      <p>HP: {pokemonHp}</p>
-      <p>Attack: {pokemonAttack}</p>
-      <p>Defense: {pokemonDefense}</p>
-      <p>Speed: {pokemonSpeed}</p>
-      <br />
-      <p>Weight: {pokemonWeight}</p>
-      <p>Height: {pokemonHeight}</p>
+      <img
+        className="img-fluid"
+        style={{ height: "250px" }}
+        src={pokemonImg}
+        alt="pokemon-img"
+      />
+      <div className="card-body">
+        <h2 className="card-text">{pokemonName}</h2>
+        <br />
+        <p className="card-text">{typeOne}</p>
+        <br />
+        <p className="card-text">HP: {pokemonHp}</p>
+        <p className="card-text">Attack: {pokemonAttack}</p>
+        <p className="card-text">Defense: {pokemonDefense}</p>
+        <p className="card-text">Speed: {pokemonSpeed}</p>
+        <br />
+        <p className="card-text">Height: {pokemonHeight}</p>
+        <p className="card-text">Weight: {pokemonWeight}</p>
+      </div>
     </div>
   );
 }

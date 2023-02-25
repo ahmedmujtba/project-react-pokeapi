@@ -29,12 +29,14 @@ body {
   border-radius: 2px;
 }
 
-.single-pokemon img {
+.card {
+  border-color: black;
   align-items: center;
   height: 200px;
   width: 200px;
 }
 .pokemon-list li {
+  align-items: center;
   padding: 2px;
   margin: 2px;
   text-decoration: none;
