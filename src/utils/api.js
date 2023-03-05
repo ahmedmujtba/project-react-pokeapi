@@ -10,6 +10,6 @@ export function getPokemonList() {
 
 export function getSinglePokemonData(pokemon) {
   return axios.get(`${url}/${pokemon}`).then((res) => {
-    console.log(res, "able to get single pokemon data");
+    return res.data;
   });
 }
