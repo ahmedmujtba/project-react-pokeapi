@@ -9,22 +9,25 @@ function Home() {
   const [allData, setAllData] = useState();
   const [pokemonNames, setPokemonNames] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [curPageUrl, setCurPageUrl] = useState("");
+  const [curPageUrl, setCurPageUrl] = useState(
+    "https://pokeapi.co/api/v2/pokemon?limit=999&offset=0"
+  );
   const [nextPage, setNextPage] = useState();
   const [prevPage, setPrevPage] = useState();
 
   const pokemon = useParams();
 
   useEffect(() => {
-    axios.get("https://pokeapi.co/api/v2/pokemon").then((res) => {
+    axios.get(curPageUrl).then((res) => {
       console.log(res.data);
       setAllData(res.data);
-      setPokemonNames(res.data.results);
+      setPokemonNames(allData.results);
+      console.log(allData.results);
       setNextPage(res.data.next);
       setPrevPage(res.data.previous);
       setIsLoading(false);
     });
-  }, []);
+  }, [allData, pokemonNames, curPageUrl]);
 
   // const useFetch = (pokemon) => {
   //   useEffect(() => {
