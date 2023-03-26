@@ -1,51 +1,42 @@
 import React from "react";
-import Pagination from "./Pagination";
-import PokemonList from "./PokemonList";
+import GameMain from "./GameMain.js";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function Home() {
-  const [allData, setAllData] = useState();
-  const [pokemonNames, setPokemonNames] = useState([]);
+  const [pokemonData, setPokemonData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [curPageUrl, setCurPageUrl] = useState(
-    "https://pokeapi.co/api/v2/pokemon?limit=999&offset=0"
-  );
-  const [nextPage, setNextPage] = useState();
-  const [prevPage, setPrevPage] = useState();
 
-  const pokemon = useParams();
+  const getPokemonList = async () => {
+    let pokemonArray = [];
+    for (let i = 1; i <= 25; i++) {
+      pokemonArray.push(await getPokemonData(i));
+    }
+    setPokemonData(pokemonArray);
 
-  useEffect(() => {
-    axios.get(curPageUrl).then((res) => {
-      console.log(res.data);
-      setAllData(res.data);
-      setPokemonNames(allData.results);
-      console.log(allData.results);
-      setNextPage(res.data.next);
-      setPrevPage(res.data.previous);
-      setIsLoading(false);
+    // pokemonArray.map((p) => {
+    //   return console.log(p.name, p.stats[0]["base_stat"]);
+    // });
+
+    setIsLoading(false);
+  };
+
+  const pokemonDataHandler = () => {
+    let userDeck =
+      pokemonData[Math.floor(Math.random(10) * pokemonData.length)];
+    console.log(userDeck);
+    pokemonData.map((p) => {
+      return console.log(p.name, p.stats[0]["base_stat"]);
     });
-  }, [allData, pokemonNames, curPageUrl]);
+  };
 
-  // const useFetch = (pokemon) => {
-  //   useEffect(() => {
-  //     getSinglePokemonData(pokemon).then((data) => {
-  //       setPokemonData(data);
-  //       setPokemonName(data.name);
-  //       setTypeOne(data.types[0].type.name);
-  //       setPokemonImg(data.sprites.other["official-artwork"]["front_default"]);
-  //       setPokemonHp(data.stats[0].base_stat);
-  //       setPokemonAttack(data.stats[1].base_stat);
-  //       setPokemonDefense(data.stats[2].base_stat);
-  //       setPokemonSpeed(data.stats[3].base_stat);
-  //       setPokemonWeight(data.weight);
-  //       setPokemonHeight(data.height);
-  //       setIsLoading(false);
-  //     });
-  //   }, [pokemon]);
-  // };
+  const getPokemonData = async (id) => {
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    return response.data;
+  };
+  useEffect(() => {
+    getPokemonList();
+  }, []);
 
   // useEffect data fetching using initial endpoint which returns pokemon name and url
   //   useEffect(() => {
@@ -66,23 +57,47 @@ function Home() {
   //   }, [curPageUrl, allData]);
 
   //function to reset current page url to next page
-  const nextPageHandler = () => {
-    setCurPageUrl(nextPage);
-  };
+  // const nextPageHandler = () => {
+  //   setCurPageUrl(nextPage);
+  // };
   //function to reset current page url to previous page
-  const prevPageHandler = () => {
-    setCurPageUrl(prevPage);
-  };
+  // const prevPageHandler = () => {
+  //   setCurPageUrl(prevPage);
+  // };
   return (
     <div className="home">
       {isLoading && <div>loading...</div>}
-      <PokemonList key={pokemonNames.name} pokemonNames={pokemonNames}>
-        {pokemonNames.name}
-      </PokemonList>
-      <Pagination
+      <div className="game-rules">
+        <h2>A cross between pokemon & blackjack</h2>
+        <br />
+        <p>
+          Rules are simple <br />
+          1. User clicks 'start game' and 10 cards are added to both user's and
+          computer's deck at random <br />
+          2. User gets first turn and can play two cards at once, user would not
+          be able to use these cards again. 3. Computer gets second turn and
+          plays two cards with same rules. <br />
+          3. Player with higher total HP wins but if the total difference
+          between HP's is greater than 68, player loses.
+          <br />
+        </p>
+        <br />
+      </div>
+      <button
+        onClick={() => {
+          pokemonDataHandler();
+        }}
+      >
+        PLAY!
+      </button>
+      <GameMain
+        key={pokemonData.name}
+        pokemonData={pokemonData.name}
+      ></GameMain>
+      {/* <Pagination
         nextPageHandler={nextPage ? nextPageHandler : null}
         prevPageHandler={prevPage ? prevPageHandler : null}
-      ></Pagination>
+      ></Pagination> */}
     </div>
   );
 }
