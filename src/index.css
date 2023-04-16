@@ -1,18 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@300&display=swap");
 
 * {
-  margin: 0;
   font-family: "Press Start 2P", cursive;
-
-  color: dodgerblue;
+  color: #ffee5a;
   font-weight: bold;
   text-transform: uppercase;
 }
 body {
-  background-color: skyblue;
+  background-color: #cd5241;
 }
 .navbar {
-  position: absolute;
+  position: sticky;
   right: 50px;
   margin: 10px;
   padding: 10px;
@@ -22,9 +20,6 @@ body {
   border-bottom: 2px solid white;
 }
 
-.pages {
-  padding: 20px;
-}
 .pages button {
   border-radius: 2px;
 }
@@ -32,12 +27,6 @@ body {
 .card {
   border-color: black;
   align-items: center;
-  height: 200px;
-  width: 200px;
-}
-.pokemon-list li {
-  align-items: center;
-  padding: 2px;
-  margin: 2px;
-  text-decoration: none;
+  height: 2px;
+  width: 2px;
 }

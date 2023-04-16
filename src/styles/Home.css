@@ -1,0 +1,18 @@
+/* ul {
+  list-style-image: url("../assets/pokeball-icon.png");
+  size: 2px;
+} */
+ul {
+  align-items: center;
+  content: "";
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-image: url("../assets/pokeball-icon.png");
+}
+.pokemon-ability {
+  background-color: aquamarine;
+}
+.pokemon-hp {
+  height: 10px;
+}
