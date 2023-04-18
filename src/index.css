@@ -2,31 +2,38 @@
 
 * {
   font-family: "Press Start 2P", cursive;
-  color: #ffee5a;
+  color: black;
   font-weight: bold;
   text-transform: uppercase;
+  margin: 0;
+  padding: 0;
 }
-body {
+ul {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+}
+.home {
+  background-color: dodgerblue;
+}
+.nav-bar {
   background-color: #cd5241;
-}
-.navbar {
-  position: sticky;
-  right: 50px;
-  margin: 10px;
-  padding: 10px;
-  align-items: center;
-  max-width: 400px;
+  display: flex;
   margin: 2px auto;
-  border-bottom: 2px solid white;
-}
-
-.pages button {
-  border-radius: 2px;
-}
-
-.card {
-  border-color: black;
+  border-bottom: 2px solid aliceblue;
   align-items: center;
-  height: 2px;
-  width: 2px;
+}
+
+.pokemon-img {
+  background-color: #cd5241;
+  position: sticky;
+  left: 550px;
+}
+.search-container {
+  text-decoration: none;
+  content: "";
+  background-color: aqua;
+}
+.search-container::after {
+  text-decoration: violet;
 }

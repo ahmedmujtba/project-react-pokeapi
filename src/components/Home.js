@@ -29,6 +29,11 @@ function Home() {
   return (
     <div className="home">
       {isLoading && <div>loading...</div>}
+      <div className="search-container">
+        <label htmlFor="pokemon-search">Search for Pokemon:</label>
+        <input type="search" />
+        <button>Search</button>
+      </div>
       <div className="pokemon-list">
         <ul>
           {pokemonData.map((pokemon) => {

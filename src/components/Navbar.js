@@ -5,7 +5,13 @@ function Navbar() {
   return (
     <div>
       <nav className="nav-bar">
-        <img src={logo} alt="pokeball-logo" width="250" height="200"></img>
+        <img
+          className="pokemon-img"
+          src={logo}
+          alt="pokeball-logo"
+          width="250"
+          height="200"
+        ></img>
       </nav>
     </div>
   );
